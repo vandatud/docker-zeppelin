@@ -9,19 +9,10 @@ Runs [Zeppelin 0.6.2](https://zeppelin.apache.org/docs/0.6.2/) on top of the [ph
 
 ## How to rebuild an extended image
 
-After pull this repository and change the dockerfile build the new image and push it to the DockerHub
+After pull this repository and change the dockerfile build the new image and push it to the DockerHub.
+Don't forget to specify the repository and tag at which to save the new image if the build succeeds.
 ```
-$ docker build -t vanda-zeppelin /path/to/dockerfile_directory
-```
-
-```
-$ docker images
-REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
-vanda-zeppelin                 latest              b5454aa510d8        2 hours ago         1.98 GB
-```
-
-```
-$ docker tag b5454aa510d8 vandatud/zeppelin:latest
+$ docker build -t vandatud/zeppelin:0.1.1 -t vandatud/zeppelin:latest -f /path/to/Dockerfile .
 ```
 
 ```
