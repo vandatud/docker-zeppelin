@@ -62,6 +62,6 @@ ENV ZEPPELIN_HOME ${ZEPPELIN_WORKDIR}/current
 
 # Config Zeppelin as a Service
 RUN mkdir /etc/service/zeppelin
-ADD files/run /etc/service/zeppelin/service_zeppelin_run
+ADD files/service_zeppelin_run /etc/service/zeppelin/run
 
 EXPOSE 8080
