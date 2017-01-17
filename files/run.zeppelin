@@ -1,2 +1,2 @@
 #!/bin/sh                                                                                                                                                                          
-exec /opt/zeppelin/current/bin/zeppelin-daemon.sh upstart >>/opt/zeppelin/current/logs/zeppelin-service.log 2>&1
+exec $ZEPPELIN_HOME/bin/zeppelin-daemon.sh upstart >>$ZEPPELIN_HOME/logs/zeppelin-service.log 2>&1

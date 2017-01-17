@@ -1,5 +1,8 @@
 FROM phusion/baseimage
 
+# Use baseimage-docker's init system.
+CMD ["/sbin/my_init"]
+
 MAINTAINER Brian Rimek
 LABEL vanda.version="zeppelin-0.6.2-bin-all"
 LABEL vanda.release="2017-01-13"
@@ -62,6 +65,9 @@ ENV ZEPPELIN_HOME ${ZEPPELIN_WORKDIR}/current
 
 # Config Zeppelin as a Service
 RUN mkdir /etc/service/zeppelin
-ADD files/service_zeppelin_run /etc/service/zeppelin/run
+ADD files/run.zeppelin /etc/service/zeppelin/run
 
 EXPOSE 8080
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
