@@ -33,7 +33,7 @@ Run a new container instance without
 ```
 $ docker run -d -t -P --name vanda-zeppelin_inst vandatud/zeppelin:latest /sbin/my_init
 ```
-docker run --rm -t -i -P --name vanda-zeppelin_inst vandatud/zeppelin:0.0.1 /sbin/my_init -- bash -l
+
 or with an interactive bash session for inspecting the image.
 
 ```
