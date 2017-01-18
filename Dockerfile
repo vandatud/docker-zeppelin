@@ -1,16 +1,13 @@
-FROM phusion/baseimage
+FROM phusion/baseimage:latest
 
-# Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
-
-MAINTAINER Brian Rimek
-LABEL vanda.version="zeppelin-0.6.2-bin-all"
-LABEL vanda.release="2017-01-13"
+MAINTAINER Brian Rimek <brian.rimek@tu-dresden.de>
+LABEL version="zeppelin-0.6.2-bin-all"
+LABEL release="0.1.2"
 
 ARG JAVA_MAJOR_VERSION=7
 ARG ZEPPELIN_VERSION=0.6.2
 ARG ZEPPELIN_WORKDIR=/opt/zeppelin
-ARG ZEPPELIN_DOWNLOAD_URL=http://mirror.softaculous.com/apache/zeppelin/zeppelin-${ZEPPELIN_VERSION}/zeppelin-${ZEPPELIN_VERSION}-bin-all.tgz
+ARG ZEPPELIN_ARCHIVE=http://mirror.softaculous.com/apache/zeppelin/zeppelin-${ZEPPELIN_VERSION}/zeppelin-${ZEPPELIN_VERSION}-bin-all.tgz
 
 # Install Python.
 RUN \
@@ -52,7 +49,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-${JAVA_MAJOR_VERSION}-oracle
 RUN mkdir ${ZEPPELIN_WORKDIR}
 WORKDIR ${ZEPPELIN_WORKDIR}
 RUN \  
-  wget ${ZEPPELIN_DOWNLOAD_URL} && \
+  wget ${ZEPPELIN_ARCHIVE} && \
   tar -xvzf zeppelin-${ZEPPELIN_VERSION}-bin-all.tgz && \
   rm ${ZEPPELIN_WORKDIR}/zeppelin-${ZEPPELIN_VERSION}-bin-all.tgz && \
   chown -R root:root zeppelin-${ZEPPELIN_VERSION}-bin-all && \
@@ -65,7 +62,12 @@ ENV ZEPPELIN_HOME ${ZEPPELIN_WORKDIR}/current
 
 # Config Zeppelin as a Service
 RUN mkdir /etc/service/zeppelin
-ADD files/run.zeppelin /etc/service/zeppelin/run
+ADD files/run.zeppelin /tmp/run.zeppelin
+# DOS-fix: Make sure file have unix line endings and execute permission
+RUN \
+  tr -d '\015' < /tmp/run.zeppelin > /tmp/run.zeppelin-unix && \
+  mv /tmp/run.zeppelin-unix /etc/service/zeppelin/run && \
+  chmod +x /etc/service/zeppelin/run
 
 EXPOSE 8080
 
