@@ -2,7 +2,7 @@ FROM phusion/baseimage:latest
 
 MAINTAINER Brian Rimek <brian.rimek@tu-dresden.de>
 LABEL version="zeppelin-0.6.2-bin-all"
-LABEL release="0.1.2"
+LABEL release="0.1.3"
 
 ARG JAVA_MAJOR_VERSION=7
 ARG ZEPPELIN_VERSION=0.6.2
