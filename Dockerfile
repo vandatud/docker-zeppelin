@@ -63,15 +63,11 @@ ENV ZEPPELIN_HOME ${ZEPPELIN_WORKDIR}/current
 # Config Zeppelin as a Service
 RUN mkdir /etc/service/zeppelin
 ADD files/run.zeppelin /tmp/run.zeppelin
-ADD files/zeppelin-env.sh /tmp/zeppelin-env.sh
 # DOS-fix: Make sure file have unix line endings and execute permission
 RUN \
   tr -d '\015' < /tmp/run.zeppelin > /tmp/run.zeppelin-unix && \
   mv /tmp/run.zeppelin-unix /etc/service/zeppelin/run && \
   chmod +x /etc/service/zeppelin/run && \
-  tr -d '\015' < /tmp/zeppelin-env.sh > /tmp/zeppelin-env-unix.sh && \
-  mv /tmp/zeppelin-env-unix.sh ${ZEPPELIN_HOME}/conf/zeppelin-env.sh && \
-  chmod +x ${ZEPPELIN_HOME}/conf/zeppelin-env.sh
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
