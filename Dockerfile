@@ -2,7 +2,7 @@ FROM phusion/baseimage:latest
 
 MAINTAINER Brian Rimek <brian.rimek@tu-dresden.de>
 LABEL version="zeppelin-0.6.2-bin-all"
-LABEL release="0.1.3"
+LABEL release="0.1.4"
 
 ARG JAVA_MAJOR_VERSION=7
 ARG ZEPPELIN_VERSION=0.6.2
@@ -67,7 +67,7 @@ ADD files/run.zeppelin /tmp/run.zeppelin
 RUN \
   tr -d '\015' < /tmp/run.zeppelin > /tmp/run.zeppelin-unix && \
   mv /tmp/run.zeppelin-unix /etc/service/zeppelin/run && \
-  chmod +x /etc/service/zeppelin/run && \
+  chmod +x /etc/service/zeppelin/run
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

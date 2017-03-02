@@ -12,7 +12,8 @@ Runs [Zeppelin 0.6.2](https://zeppelin.apache.org/docs/0.6.2/) on top of the [ph
 After pulling this repository and changing the Dockerfile first build the new image locally to test it.
 Optionally specify the repository and tag at which to save the new image if the build succeeds.
 ```
-$ docker build -t vandatud/zeppelin:0.1.1 -t vandatud/zeppelin:latest -f /path/to/Dockerfile
+$ cd /path/to/Dockerfile
+$ docker build -t vandatud/zeppelin:0.1.1 -t vandatud/zeppelin:latest
 ```
 
 If this Git repository is pushing back to the server, DockerHub will automatically build this image.
@@ -31,7 +32,7 @@ $ docker push vandatud/zeppelin:0.1.1
 Run a new container instance without
 
 ```
-$ docker run -d -t -P --name vanda-zeppelin_inst vandatud/zeppelin:latest /sbin/my_init
+$ docker run -d -t -P --name vanda-zeppelin_inst vandatud/zeppelin:latest
 ```
 
 or with an interactive bash session for inspecting the image.
@@ -43,7 +44,7 @@ $ docker run --rm -t -i -P --name vanda-zeppelin_inst vandatud/zeppelin:latest /
 ```
 $ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                     NAMES
-105287df93ce        vandatud/zeppelin   "/sbin/my_init"     About an hour ago   Up About an hour    0.0.0.0:32772->8080/tcp   vanda-zeppelin_inst5
+105287df93ce        vandatud/zeppelin   "/sbin/my_init"     About an hour ago   Up About an hour    0.0.0.0:32772->8080/tcp   vanda-zeppelin_inst
 ```
 
 Once the container is running you can open the web interface under the attached host port (i.e. [localhost:32772](http://localhost:32772))
