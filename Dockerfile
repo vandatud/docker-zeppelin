@@ -7,7 +7,7 @@ LABEL release="0.1.3"
 ARG JAVA_MAJOR_VERSION=7
 ARG ZEPPELIN_VERSION=0.6.2
 ARG ZEPPELIN_WORKDIR=/opt/zeppelin
-ARG ZEPPELIN_ARCHIVE=http://mirror.softaculous.com/apache/zeppelin/zeppelin-${ZEPPELIN_VERSION}/zeppelin-${ZEPPELIN_VERSION}-bin-all.tgz
+ARG ZEPPELIN_ARCHIVE=https://archive.apache.org/dist/zeppelin/zeppelin-${ZEPPELIN_VERSION}/zeppelin-${ZEPPELIN_VERSION}-bin-all.tgz
 
 # Install Python.
 RUN \
