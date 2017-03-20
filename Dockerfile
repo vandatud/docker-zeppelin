@@ -71,3 +71,5 @@ RUN \
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+EXPOSE ${ZEPPELIN_PORT}
